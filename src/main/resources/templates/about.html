@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/css/style.css}" />
+
+    <title>About</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #c56a97;">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#" th:href="@{/}">Vibes Web</a>
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+            <a class="nav-link" th:href="@{/settings}">Settings</a>
+        </li>
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2>About Us</h2>
+            <p class="lead">
+                Vibes is a Java based web application that gives users access to positive and uplifting quotes through a
+                beautiful UI. As quotes are shown to the user, the option is given to like or dislike a quote. Liking a
+                quote ensures that the quote will come up again, meaning that it had a positive effect on the user.
+                Disliking a quote removes the quote from possibly being shown in the future.
+            </p>
+            <p class="lead">
+                Quotes are stored in a database for each user, resetting your selections is easily done in the interface
+                above. The quotes are from the Vibes API, which is an API that serves quotes and uplifting texts via
+                API endpoints.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+<script type="text/javascript"
+        th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

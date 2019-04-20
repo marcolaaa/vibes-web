@@ -1,0 +1,15 @@
+.carousel-control-prev-icon {
+    background-image: url("../images/icon-dislike.png");
+    width: 70px;
+    height: 70px;
+}
+
+.carousel-control-next-icon {
+    background-image: url("../images/icon-like.png");
+    width: 70px;
+    height: 70px;
+}
+
+.quote-quote {
+    font-size: 1.3rem;
+}

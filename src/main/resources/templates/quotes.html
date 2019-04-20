@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/css/style.css}" />
+
+    <title>Quotes</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #c56a97;">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#" th:href="@{/}">Vibes Web</a>
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/about}">About</a>
+        </li>
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+            <a class="nav-link" th:href="@{/settings}">Settings</a>
+        </li>
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+<br>
+<div class="container">
+    <div id="carouselFade" class="carousel slide">
+
+        <div class="carousel-inner" th:if="${#lists.isEmpty(quotes)}">
+            <div class="carousel-item active">
+                <img class="d-block w-100 slide-image" src="images/11.jpg">
+                <div class="carousel-caption">
+                    <p style="color: #bf0000">Ops! You are out of quotes! Go to settings and reset your rejected quotes!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-inner" th:if="${not #lists.isEmpty(quotes)}">
+            <div class="carousel-item" th:each="quote, iterStat : ${quotes}" th:classappend="${iterStat.first} ? 'active'">
+                <img class="d-block w-100 slide-image">
+                <div class="carousel-caption">
+                    <p class="quote-quote" th:text="${quote.quote}"></p>
+                    <p class="quote-id" th:text="${quote.id}" hidden></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="like-dislike-control" th:if="${not #lists.isEmpty(quotes)}">
+            <a class="carousel-control-prev" href="#carouselFade" role="button">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselFade" role="button">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-1">
+            <img width="70" height="70" src="images/icon-like.png" />
+        </div>
+        <div class="col-md-7">
+            <p class="lead" style="padding-top: 25px">I like this quote and I want to see it again in the future.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <img width="70" height="70" src="images/icon-dislike.png" />
+        </div>
+        <div class="col-md-7">
+            <p class="lead" style="padding-top: 25px">I didn't like this quote and I don't want to see it again.</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+<script type="text/javascript"
+        th:src="@{/js/script.js}"></script>
+
+</body>
+</html>
