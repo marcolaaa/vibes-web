@@ -33,6 +33,7 @@ public class QuotesServiceImpl implements QuotesService {
 
     @Override
     public List<Quote> getQuotesList() {
+        //return a list with 100 random quotes
         ResponseEntity<List<Quote>> response = restTemplate.exchange(
                 "https://vibes.dgrzyb.me/api/v1/quotes?client_id=bf002af5-978e-4d48-8ef6-34b4e305fb6f",
                 HttpMethod.GET,
